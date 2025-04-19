@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Les images de galerie</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 200px;  
+            height: 200px; /* Hauteur fixe */
+            object-fit: cover; 
+            border-radius: 10px
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2) rotate(2deg);
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            opacity: 1;
+        }
+        body{
+            background-image: url("image 23.JPG");
+            background-size: cover;
+            
+        }
+        h1{
+            color: white;
+            font-style: italic;
+        }
+body {
+      margin: 0;
+      background-image: url("image 22.jpg");
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      background-color: #111;
+      padding: 10px 20px;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .logo span {
+      color: orange;
+    }
+    .nav-item {
+      position: relative;
+      margin-left: 30px;
+      cursor: pointer;
+    }
+    .nav-item:hover .dropdown {
+      display: block;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 35px;
+      left: 0;
+      background-color: #222;
+      border: 1px solid #444;
+      min-width: 150px;
+    }
+    .dropdown a {
+      display: block;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+    }
+    .dropdown a:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">pays<span>ville</span></div>
+    <div class="nav-item">ACCUEIL</div>
+    <div class="nav-item">VIDÉOS
+      <div class="dropdown">
+        <a href="#">Populaires</a>
+        <a href="#">Récentes</a>
+        <a href="#">Tendances</a>
+      </div>
+    </div>
+    <div class="nav-item">CATÉGORIES
+      <div class="dropdown">
+        <a href="#">Amateur</a>
+        <a href="#">Professionnel</a>
+        <a href="#">Milf</a>
+      </div>
+    </div>
+    <div class="nav-item">LIVE VILLE</div>
+    <div class="nav-item">PROFESSION</div>
+    <div class="nav-item">COMMUNAUTÉ</div>
+    <div class="nav-item">PHOTOS & GIF</div>
+  </div>
+
+
+<h1 style="color: red;">Bienvenue sur ma page2</h1>
+<a href="#ville">vers le bas</a><br />
+<header>
+    <div class="logo"></div>
+       
+
+        <link rel="icon" type="image 1/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image 2/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="shortcut icon" href="favicon.ico">
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="image 20.JPG" alt="image 1" title="c'est une belle image">
+        <div class="caption">Légende 1</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 18.JPG" alt="image 2">
+        <div class="caption">Légende 2</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 14.JPG" alt="image 3">
+        <div class="caption">Légende 3</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 11.JPG" alt="image 4">
+        <div class="caption">Légende 4</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 16.JPG" alt="image 5">
+        <div class="caption">Légende 5</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 15.JPG" alt="image 6">
+        <div class="caption">Légende 6</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 16.JPG" alt="image 7">
+        <div class="caption">Légende 7</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 8.JPG" alt="image 8">
+        <div class="caption">Légende 8</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 9.JPG" alt="image 9">
+        <div class="caption">Légende 9</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 10.JPG" alt="image 10">
+        <div class="caption">Légende 10</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 11.JPG" alt="image 11">
+        <div class="caption">Légende 11</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 12.JPG" alt="image 12">
+        <div class="caption">Légende 12</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 13.JPG" alt="image 13">
+        <div class="caption">Légende 13</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 14.JPG" alt="image 14">
+        <div class="caption">Légende 14</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 15.JPG" alt="image 15">
+        <div class="caption">Légende 15</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 16.JPG" alt="image 16">
+        <div class="caption">Légende 16</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 11.JPG" alt="image 17">
+        <div class="caption">Légende 17</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 18.JPG" alt="image 18">
+        <div class="caption">Légende 18</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 15.JPG" alt="image 19">
+        <div class="caption">Légende 19</div>
+    </div>
+    <div class="gallery-item">
+        <img src="image 20.JPG" alt="image 20">
+        <div class="caption">Légende 20</div>
+        
+        <p id="ville">vers le bas</p>
+        <script src="java.js">
+            
+        </script>
+
+</body>
+</html>
