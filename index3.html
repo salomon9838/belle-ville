@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Site</title>
+</head>
+<body>
+    <style>
+        body{
+        background-color: gray;
+        color: black;
+        text-align: center;
+        font-size: large;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    form {
+      width: 100%;
+      max-width: 600px; /* Pour limiter la largeur du formulaire */
+      margin: 0 auto; /* Pour centrer le formulaire */
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    form div {
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%; /* Pour que le bouton remplisse la largeur de son conteneur */
+      padding: 15px;
+      background-color: blue;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .si{
+		background-color: yellow;
+		
+	}
+
+    </style>
+  <header>
+    <h1 style="color: blue;">Bienvenue sur mon site !</h1>
+  </header>
+
+  <main>
+    <h2>Inscription</h2>
+    <form action="https://formspree.io/f/{TON_FORM_ID}" method="POST">
+        <p>
+      <div>
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+      </div>
+        </p>
+
+        <p>
+      <div>
+        <label for="Prenom">Prenom :</label>
+        <input type="text" id="Prenom" name="Prenom" required>
+      </div>
+        </p>
+        <p>
+      <div>
+        <label for="Date de naissance">Date de naissance :</label>
+        <input type="naissance" id="Date de naissance" name="Date de naissance" required>
+      </div>
+      </p>
+      <p>
+      <div>
+        <label for="email">Adresse :</label>
+        <input type="Adresse" id="Adresse" name="Adresse" required>
+      </div>
+      </p>
+        <p>
+      <div>
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      </p>
+        <p>
+      <div>
+        <label for="Profession">Profession :</label>
+        <input type="input type="email"" id="Profession" name="Profession" required>
+      </div>
+       </p>
+       <p>
+        <div>
+          <label for="Expérience">Expérience :</label>
+          <input type="input type="Expérience"" id="Expérience" name="Expérience" required>
+        </div>
+         </p>
+         <textarea name="message" placeholder="Ton message"></textarea>
+         <button type="submit">S'inscrire</button>
+     
+    </form>
+  </main>
+  <p><button class="si"><a href="index2.html">Ma page 2</a></button></p>
+ 
+  <footer>
+    <p>&copy; 2025 Mon Site Web</p>
+  </footer>
+  </style>
+</body>
+</html>
