@@ -4,76 +4,92 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>VISITE DE LA VILLE</title>
-
-</head>
-<body>
 	<style>
-	body{
-		 background-image: url("image21.jpg");
-            background-size: cover;
-            font-family: Times News Roman;
-            
-	}
-	p{
-		  font-family: Times News Roman;
-		  
-	}
-	a[title]{
-		color: red;
-
-	}
-	h1{
-		font-family: Arial Black;
-		text-align: center;
-		color: blue;
-		text-decoration: blink;
-	}
-	.si{
-		background-color: yellow;
-		
-	}
-	h2{
-		
-		text-align: center;
-	}
-	body{
-		text-align: center;
-
-	
-
-	}
-	.se{
-		text-align: right;
-
-	}
-
-
-	.flat{
-		float: right;
-			}
-	.fla{
-		float: left;
-	}
-
-	  </style>
+		body {
+			background-image: url("image21.JPG");
+			background-size: cover;
+			font-family: "Times New Roman";
+			text-align: center;
+		}
+		p, h3 {
+			font-family: "Times New Roman";
+		}
+		a[title] {
+			color: red;
+		}
+		h1 {
+			font-family: Arial Black;
+			text-align: center;
+			color: blue;
+		}
+		.si {
+			background-color: yellow;
+		}
+		h2 {
+			text-align: center;
+		}
+		.se {
+			text-align: right;
+		}
+		.flat {
+			float: right;
+		}
+		.fla {
+			float: left;
+		}
+		/* Style pour la recherche */
+		#searchBar {
+			width: 50%;
+			padding: 10px;
+			font-size: 16px;
+			margin: 20px auto;
+			display: block;
+			border-radius: 10px;
+			border: 1px solid #ccc;
+		}
+	</style>
 </head>
 <body>
+
 	<h1>LA DECOUVERTE DE MON SITE</h1>
 	<h2>BIENVENUE SUR LA VISITE DES VILLES</h2>
-	<p>Grace à la decouverte de ce site vous enverrez des villes les plus belles et explandides<br /> du monde entier sous-ceux je vous invite à voir ma page suivante.</p>
-	<h3>Voici un exemple de la France à paris</h3>
-	
-	<p><a href="TP3-1.pdf">Telecharger le fichier de la ville</a></p>
-	
-	<img src="image4.jpg" class="flat="flottante">
-	<img src="image4.jpg" class="flat="flottante">
-	<img src="image4.jpg" class="flat="flottante">
-</p>
-	<p class="se"><button><a href="mailto: salomonkoumedjina@gmail.com" title="e-mail">Contactez-moi</a></button></p>
-	<h3>cliquez le lien en desssous pour ma page suivante</h3>
-	<p><button class="si"><a href="index3.html">Ma page 2</a></button></p>
-	<flooter style="color: red;">
-		contact         @salomonFiagan                   formateur
-	
+
+	<!-- 🔍 Zone de recherche -->
+	<input type="text" id="searchBar" placeholder="Rechercher un mot dans la page..." onkeyup="rechercher()">
+
+	<!-- Contenu filtrable -->
+	<div id="contenu">
+		<p>Grace à la découverte de ce site, vous verrez des villes les plus belles et splendides<br /> du monde entier sous-ceux je vous invite à voir ma page suivante.</p>
+		<h3>Voici un exemple de la France à Paris</h3>
+		<p><a href="TP3-1.pdf">Télécharger le fichier de la ville</a></p>
+		<img src="images/image4.jpg" class="flat flottante">
+		<img src="images/image4.jpg" class="flat flottante">
+		<img src="images/image4.jpg" class="flat flottante">
+		<p class="se"><button><a href="mailto:salomonkoumedjina@gmail.com" title="e-mail">Contactez-moi</a></button></p>
+		<h3>Cliquez le lien en dessous pour ma page suivante</h3>
+		<p><button class="si"><a href="page2.html">Ma page 2</a></button></p>
+	</div>
+
+	<!-- Pied de page -->
+	<footer style="color: red;">
+		contact @salomonFiagan - formateur
+	</footer>
+
+	<!-- 🔧 JavaScript de recherche -->
+	<script>
+		function rechercher() {
+			let filtre = document.getElementById("searchBar").value.toLowerCase();
+			let elements = document.querySelectorAll("#contenu *");
+
+			elements.forEach(function(el) {
+				if (el.innerText.toLowerCase().includes(filtre)) {
+					el.style.display = "";
+				} else {
+					el.style.display = "none";
+				}
+			});
+		}
+	</script>
+
 </body>
 </html>
