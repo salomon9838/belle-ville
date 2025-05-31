@@ -1,284 +1,579 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Les images de galerie</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Les images de galerie</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        /* Global body styles */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url("image22.jpg"); /* Keeping the last defined background image */
+            background-size: cover;
+            color: white; /* Text color for body */
+        }
+
+        /* Heading style */
+        h1 {
+            margin: 20px 0;
+            color: red; /* Specific color for h1 */
+            font-style: italic;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #111;
+            padding: 10px 20px;
+            width: 100%; /* Ensure navbar spans full width */
+            justify-content: center; /* Center nav items */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 30px; /* Space between logo and nav items */
+        }
+
+        .logo span {
+            color: orange;
+        }
+
+        .nav-item {
+            position: relative;
+            margin-left: 30px;
+            cursor: pointer;
+            padding: 5px 0; /* Add some padding for better click area */
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 35px;
+            left: 0;
+            background-color: #222;
+            border: 1px solid #444;
+            min-width: 150px;
+            z-index: 999; /* Ensure dropdown is above other content */
+            border-radius: 5px;
+            overflow: hidden; /* Ensures rounded corners apply to children */
+        }
+
+        .dropdown a {
+            display: block;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown a:hover {
+            background-color: #333;
+        }
+
+        /* Gallery styles */
+        .gallery {
+            display: grid;
+            /* Adjusted to allow images to take more width */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            /* Removed max-width to allow full page width */
+            width: 100%; /* Make gallery responsive */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px; /* Consistent border-radius */
+            cursor: pointer;
+            width: 100%; /* Make items responsive */
+            padding-top: 100%; /* Maintain aspect ratio (1:1 for square) */
+            height: 0; /* Required for padding-top trick */
+            background-color: #333; /* Placeholder background */
+        }
+
+        .gallery-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease-in-out;
+            border-radius: 10px; /* Apply to image as well */
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2) rotate(2deg);
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-sizing: border-box;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .gallery-item:hover .caption {
+            opacity: 1;
+        }
+
+        /* Custom Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            color: #333; /* Dark text for modal content */
+            box-sizing: border-box;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            white-space: pre-wrap; /* To preserve newlines from \n */
+        }
+
+        .modal-content .input-area {
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .modal-content input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        .modal-content button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .logo {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            .nav-item {
+                margin-left: 0;
+                margin-bottom: 5px;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-<style>
-body {
-font-family: Arial, sans-serif;
- display: flex;
-flex-direction: column;
- align-items: center;
-min-height: 100vh;
-background-color: #f4f4f4;
- margin: 0;
-}
- h1 {
-margin: 20px 0;
-}
 
-.gallery {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-gap: 15px;
-max-width: 900px;
- padding: 20px;
-}
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 200px;
-    height: 200px; /* Hauteur fixe */
-    object-fit: cover;
-    border-radius: 10px;
-}
-
- .gallery-item img {
-width: 100%;
-height: auto;
-display: block;
-transition: transform 0.5s ease-in-out;
- }
-
-.gallery-item:hover img {
- transform: scale(1.2) rotate(2deg);
-}
-
- .caption {
- position: absolute;
- bottom: 0;
- left: 0;
- width: 100%;
- background: rgba(0, 0, 0, 0.6);
- color: white;
- text-align: center;
- padding: 10px;
- opacity: 0;
-transition: opacity 0.3s ease;
- }
-
-.gallery-item:hover .caption {
- opacity: 1;
-}
- body{
- background-image: url("image23.JPG");
-background-size: cover;
-
- }
- h1{
- color: white;
- font-style: italic;
-}
-body {
- margin: 0;
- background-image: url("image22.jpg");
-color: white;
-font-family: Arial, sans-serif;
-  }
- .navbar {
- display: flex;
- align-items: center;
- background-color: #111;
-padding: 10px 20px;
-}
- .logo {
- font-size: 24px;
- font-weight: bold;
-}
- .logo span {
-color: orange;
- }
- .nav-item {
- position: relative;
- margin-left: 30px;
- cursor: pointer;
- }
-.nav-item:hover .dropdown {
-display: block;
- }
- .dropdown {
- display: none;
-position: absolute;
- top: 35px;
-left: 0;
- background-color: #222;
- border: 1px solid #444;
-min-width: 150px;
- }
- .dropdown a {
-display: block;
- color: white;
- padding: 10px;
-text-decoration: none;
- }
- .dropdown a:hover {
- background-color: #333;
-}
-</style>
-</head>
-<body>
-
- <div class="navbar">
- <div class="logo">pays<span>ville</span></div>
- <div class="nav-item">ACCUEIL</div>
-<div class="nav-item">VIDÉOS
-<div class="dropdown">
- <a href="#">Populaires</a>
- <a href="#">Récentes</a>
-<a href="#">Tendances</a>
-</div>
-</div>
- <div class="nav-item">CATÉGORIES
-<div class="dropdown">
- <a href="#">Amateur</a>
- <a href="#">Professionnel</a>
-<a href="#">Milf</a>
-</div>
- </div>
- <div class="nav-item">LIVE VILLE</div>
-<div class="nav-item">PROFESSION</div>
-<div class="nav-item">COMMUNAUTÉ</div>
-<div class="nav-item">PHOTOS & GIF</div>
- </div>
-
-
-<h1 style="color: red;">Bienvenue sur ma page2</h1>
-<a href="#ville">vers le bas</a><br />
-<header>
- <div class="logo"></div>
-
-
- <link rel="icon" type="image 1/png" sizes="32x32" href="favicon-32x32.png">
- <link rel="icon" type="image 2/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="shortcut icon" href="favicon.ico">
-<div class="gallery">
- <div class="gallery-item">
-<img src="IMG-20250526-WA0011.jpg" alt="Kaftan Batik Cotton Kelantan">
- <div class="caption">Kaftan Batik Cotton Kelantan</div>
-</div>
- <div class="gallery-item">
-<img src="IMG-20250526-WA0012.jpg" alt="Dera Dresses">
-<div class="caption">Dera Dresses</div>
-</div>
- <div class="gallery-item">
-<img src="IMG-20250526-WA0013.jpg" alt="Propaganda Kimono">
-<div class="caption">Propaganda Kimono</div>
-</div>
-<div class="gallery-item">
-<img src="IMG-20250526-WA0016.jpg" alt="Dera Dresses Wholesale, Quality Bubu Gown">
-<div class="caption">Dera Dresses Wholesale, Quality Bubu Gown</div>
-</div>
-<div class="gallery-item">
- <img src="IMG-20250526-WA0017.jpg" alt="Daster Lowo Polos">
- <div class="caption">Daster Lowo Polos</div>
-</div>
- <div class="gallery-item">
-<img src="IMG-20250526-WA0018.jpg" alt="Tonia Dibiechukwu Instagram">
-<div class="caption">Tonia Dibiechukwu Instagram</div>
-</div>
- <div class="gallery-item">
-<img src="IMG-20250526-WA0019.jpg" alt="Hawaiian Caftan">
- <div class="caption">Hawaiian Caftan</div>
-</div>
-<div class="gallery-item">
- <img src="IMG-20250526-WA0020.jpg" alt="Plus-size clothing, dresses for short ladies with big tummy">
-<div class="caption">Plus-size clothing, dresses for short ladies with big tummy</div>
- </div>
- <div class="gallery-item">
- <img src="IMG-20250526-WA0021.jpg" alt="Hawaiian Caftan, Bubu Gown">
- <div class="caption">Hawaiian Caftan, Bubu Gown</div>
-</div>
- <div class="gallery-item">
-<img src="IMG-20250526-WA0022.jpg" alt="Tanzania Dira Dress">
- <div class="caption">Tanzania Dira Dress</div>
- </div>
-    <div class="gallery-item">
-<img src="IMG-20250526-WA0086.jpg" alt="Fashion Nova Powerpuff Girls">
- <div class="caption">Fashion Nova Powerpuff Girls</div>
- </div>
-    <div class="gallery-item">
-<img src="IMG-20250526-WA0073.jpg" alt="Omighty Depop">
- <div class="caption">Omighty Depop</div>
-</div>
-    <div class="gallery-item">
-<img src="IMG-20250526-WA0101.jpg" alt="Tigasetits Shirt">
- <div class="caption">Tigasetits Shirt</div>
-</div>
-    <div class="gallery-item">
-<img src="IMG-20250526-WA0099.jpg" alt="Graffiti Crop Top">
-<div class="caption">Graffiti Crop Top</div>
- </div>
-    <div class="gallery-item">
-<img src="IMG-20250526-WA0097.jpg" alt="Danielle Bregoli Underboobs">
- <div class="caption">Danielle Bregoli Underboobs</div>
- </div>
-    <div class="gallery-item">
-<img src="IMG-20250526-WA0081.jpg" alt="Butterfly Rhinestone Top, SHEIN Slayr Plus Size Women's Casual Simple Butterfly Print Tank Top For Summer">
-<div class="caption">Butterfly Rhinestone Top</div>
- </div>
-    <div class="gallery-item">
-<img src="IMG-20250526-WA0096.jpg" alt="Therealkylesister Merch, SHEIN Slayr Crop Top">
- <div class="caption">Therealkylesister Merch</div>
-</div>
-    <div class="gallery-item">
- <img src="IMG-20250526-WA0095.jpg" alt="Queen of Spades Top, Shein Essence Queen Casual Crown Heart & Poker Pattern Round Neck Slim Fit Women's Tank Top">
-<div class="caption">Queen of Spades Top</div>
-</div>
-    <div class="gallery-item">
-<img src="IMG-20250526-WA0079.jpg" alt="Nope Not Today Shirt">
- <div class="caption">Nope Not Today Shirt</div>
-</div>
-    <div class="gallery-item">
- <img src="IMG-20250526-WA0080.jpg" alt="Letter Tape Crop Top">
- <div class="caption">Letter Tape Crop Top</div>
- </div>
-    <div class="gallery-item">
-        <img src="IMG-20250526-WA0047.jpg" alt="Men's Shorts, dhgate shorts">
-        <div class="caption">Men's Shorts, dhgate shorts</div>
+    <div class="navbar">
+        <div class="logo">pays<span>ville</span></div>
+        <div class="nav-item">ACCUEIL</div>
+        <div class="nav-item">VIDÉOS
+            <div class="dropdown">
+                <a href="#">Populaires</a>
+                <a href="#">Récentes</a>
+                <a href="#">Tendances</a>
+            </div>
+        </div>
+        <div class="nav-item">CATÉGORIES
+            <div class="dropdown">
+                <a href="#">Amateur</a>
+                <a href="#">Professionnel</a>
+                <a href="#">Milf</a>
+            </div>
+        </div>
+        <div class="nav-item">LIVE VILLE</div>
+        <div class="nav-item">PROFESSION</div>
+        <div class="nav-item">COMMUNAUTÉ</div>
+        <div class="nav-item">PHOTOS & GIF</div>
     </div>
-    <div class="gallery-item">
-        <img src="IMG-20250526-WA0048.jpg" alt="Virgin Mary Shorts">
-        <div class="caption">Virgin Mary Shorts</div>
-    </div>
-    <div class="gallery-item">
-        <img src="IMG-20250526-WA0049.jpg" alt="Pug Swim Trunks">
-        <div class="caption">Pug Swim Trunks</div>
-    </div>
-    <div class="gallery-item">
-        <img src="IMG-20250526-WA0050.jpg" alt="Sweat Shorts with Designs, Adigun Shorts">
-        <div class="caption">Sweat Shorts with Designs, Adigun Shorts</div>
-    </div>
-    <div class="gallery-item">
-        <img src="IMG-20250526-WA0051.jpg" alt="Mesh Shorts Mens, White Shorts for Men">
-        <div class="caption">Mesh Shorts Mens, White Shorts for Men</div>
-    </div>
-    <div class="gallery-item">
-        <img src="IMG-20250526-WA0054.jpg" alt="Neoprene Fabric Shorts, Adidas Men's Shorts">
-        <div class="caption">Neoprene Fabric Shorts, Adidas Men's Shorts</div>
-    </div>
-    <div class="gallery-item">
-        <img src="IMG-20250526-WA0055.jpg" alt="Dhgate Shorts, Men's Shorts">
-        <div class="caption">Dhgate Shorts, Men's Shorts</div>
-    </div>
-    <div class="gallery-item">
-        <img src="IMG-20250526-WA0056.jpg" alt="Shorts Custom, Vintage Ghost Records Print Casual Fashion Shorts">
-        <div class="caption">Shorts Custom, Vintage Ghost Records Print Casual Fashion Shorts</div>
-    </div>
-    <div class="gallery-item">
-        <img src="IMG-20250526-WA0058.jpg" alt="Sweat Shorts with Designs, Adigun Shorts">
-        <div class="caption">Sweat Shorts with Designs, Adigun Shorts</div>
-    </div>
-    <div class="gallery-item">
-        <img src="IMG-20250526-WA0062.jpg" alt="Acrylic Shorts, Brooklyn Shorts">
-        <div class="caption">Acrylic Shorts, Brooklyn Shorts</div>
-    </div>
- <p id="ville">vers le bas</p>
-<script src="java.js"></script>
 
+    <h1 style="color: red;">Bienvenue sur ma page2</h1>
+    <a href="#ville">vers le bas</a><br />
+
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0011.jpg" alt="Kaftan Batik Cotton Kelantan">
+            <div class="caption">Kaftan Batik Cotton Kelantan</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0012.jpg" alt="Dera Dresses">
+            <div class="caption">Dera Dresses</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0013.jpg" alt="Propaganda Kimono">
+            <div class="caption">Propaganda Kimono</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0016.jpg" alt="Dera Dresses Wholesale, Quality Bubu Gown">
+            <div class="caption">Dera Dresses Wholesale, Quality Bubu Gown</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0017.jpg" alt="Daster Lowo Polos">
+            <div class="caption">Daster Lowo Polos</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0018.jpg" alt="Tonia Dibiechukwu Instagram">
+            <div class="caption">Tonia Dibiechukwu Instagram</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0019.jpg" alt="Hawaiian Caftan">
+            <div class="caption">Hawaiian Caftan</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0020.jpg" alt="Plus-size clothing, dresses for short ladies with big tummy">
+            <div class="caption">Plus-size clothing, dresses for short ladies with big tummy</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0021.jpg" alt="Hawaiian Caftan, Bubu Gown">
+            <div class="caption">Hawaiian Caftan, Bubu Gown</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0022.jpg" alt="Tanzania Dira Dress">
+            <div class="caption">Tanzania Dira Dress</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0086.jpg" alt="Fashion Nova Powerpuff Girls T-shirt">
+            <div class="caption">Fashion Nova Powerpuff Girls T-shirt</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0073.jpg" alt="Omighty Depop T-shirt">
+            <div class="caption">Omighty Depop T-shirt</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0101.jpg" alt="Tigasetits Shirt">
+            <div class="caption">Tigasetits Shirt</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0099.jpg" alt="Graffiti Crop Top">
+            <div class="caption">Graffiti Crop Top</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0097.jpg" alt="Danielle Bregoli Underboobs T-shirt">
+            <div class="caption">Danielle Bregoli Underboobs T-shirt</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0081.jpg" alt="Butterfly Rhinestone Top">
+            <div class="caption">Butterfly Rhinestone Top</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0096.jpg" alt="Therealkylesister Merch Crop Top">
+            <div class="caption">Therealkylesister Merch Crop Top</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0095.jpg" alt="Queen of Spades Top">
+            <div class="caption">Queen of Spades Top</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0079.jpg" alt="Nope Not Today Shirt">
+            <div class="caption">Nope Not Today Shirt</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0080.jpg" alt="Letter Tape Crop Top">
+            <div class="caption">Letter Tape Crop Top</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0047.jpg" alt="Men's Shorts, dhgate shorts">
+            <div class="caption">Men's Shorts, dhgate shorts</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0048.jpg" alt="Virgin Mary Shorts">
+            <div class="caption">Virgin Mary Shorts</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0049.jpg" alt="Pug Swim Trunks">
+            <div class="caption">Pug Swim Trunks</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0050.jpg" alt="Sweat Shorts with Designs, Adigun Shorts">
+            <div class="caption">Sweat Shorts with Designs, Adigun Shorts</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0051.jpg" alt="Mesh Shorts Mens, White Shorts for Men">
+            <div class="caption">Mesh Shorts Mens, White Shorts for Men</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0054.jpg" alt="Neoprene Fabric Shorts, Adidas Men's Shorts">
+            <div class="caption">Neoprene Fabric Shorts, Adidas Men's Shorts</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0055.jpg" alt="Dhgate Shorts, Men's Shorts">
+            <div class="caption">Dhgate Shorts, Men's Shorts</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0056.jpg" alt="Shorts Custom, Vintage Ghost Records Print Casual Fashion Shorts">
+            <div class="caption">Shorts Custom, Vintage Ghost Records Print Casual Fashion Shorts</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0058.jpg" alt="Sweat Shorts with Designs, Adigun Shorts">
+            <div class="caption">Sweat Shorts with Designs, Adigun Shorts</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0062.jpg" alt="Acrylic Shorts, Brooklyn Shorts">
+            <div class="caption">Acrylic Shorts, Brooklyn Shorts</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0064.jpg" alt="T-shirt with graphic print">
+            <div class="caption">T-shirt with graphic print</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0065.jpg" alt="T-shirt with graphic print">
+            <div class="caption">T-shirt with graphic print</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0066.jpg" alt="T-shirt with graphic print">
+            <div class="caption">T-shirt with graphic print</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0067.jpg" alt="T-shirt with graphic print">
+            <div class="caption">T-shirt with graphic print</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0068.jpg" alt="T-shirt with graphic print">
+            <div class="caption">T-shirt with graphic print</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0069.jpg" alt="T-shirt with graphic print">
+            <div class="caption">T-shirt with graphic print</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0070.jpg" alt="T-shirt with graphic print">
+            <div class="caption">T-shirt with graphic print</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0071.jpg" alt="T-shirt with graphic print">
+            <div class="caption">T-shirt with graphic print</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0072.jpg" alt="T-shirt with graphic print">
+            <div class="caption">T-shirt with graphic print</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0076.jpg" alt="T-shirt with graphic print">
+            <div class="caption">T-shirt with graphic print</div>
+        </div>
+    </div>
+    <p id="ville">vers le bas</p>
+    <p id="finalResultDisplay" style="margin-top: 20px; font-size: 1.2em; text-align: center;"></p>
+
+    <div id="customModalOverlay" class="modal-overlay">
+        <div id="customModal" class="modal-content">
+            <p id="modalMessage"></p>
+            <div id="inputArea" class="input-area">
+                <label id="modalInputLabel" for="modalInput"></label>
+                <input type="text" id="modalInput">
+            </div>
+            <button id="modalOkButton">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Global variables for modal elements
+        let customModalOverlay;
+        let customModal;
+        let modalMessage;
+        let inputArea;
+        let modalInputLabel;
+        let modalInput;
+        let modalOkButton;
+        let finalResultDisplay;
+
+        // Variables to store user input
+        let nom, prenom, annee_naissance, age;
+
+        // State for the prompt sequence
+        let currentPromptStep = 0;
+        const promptSteps = [
+            { type: 'alert', message: 'Hello world' },
+            { type: 'alert', message: 'Veuillez saisir vos informations' },
+            { type: 'prompt', message: 'Saisir votre nom', varName: 'nom', label: 'Votre nom:' },
+            { type: 'prompt', message: 'Saisir votre prénom', varName: 'prenom', label: 'Votre prénom:' },
+            { type: 'prompt', message: 'Saisir votre année de naissance', varName: 'annee_naissance', label: 'Votre année de naissance:' },
+            { type: 'prompt', message: 'Saisir votre âge', varName: 'age', label: 'Votre âge:', parse: Number },
+            { type: 'result' }, // Special step to display result and check age
+            { type: 'final' } // End of sequence
+        ];
+
+        /**
+         * Displays the custom modal with a message and optional input field.
+         * @param {string} message - The message to display in the modal.
+         * @param {boolean} showInput - Whether to show the input field.
+         * @param {string} inputLabelText - The label for the input field.
+         * @param {string} inputValue - The initial value for the input field.
+         */
+        function showModal(message, showInput = false, inputLabelText = '', inputValue = '') {
+            modalMessage.textContent = message;
+            if (showInput) {
+                inputArea.style.display = 'block';
+                modalInputLabel.textContent = inputLabelText;
+                modalInput.value = inputValue;
+                modalInput.focus();
+            } else {
+                inputArea.style.display = 'none';
+                modalInput.value = '';
+            }
+            customModalOverlay.style.display = 'flex';
+        }
+
+        /**
+         * Hides the custom modal.
+         */
+        function hideModal() {
+            customModalOverlay.style.display = 'none';
+        }
+
+        /**
+         * Handles the progression through the prompt sequence.
+         * Stores input from the previous step and displays the next message/prompt.
+         */
+        function handleNextStep() {
+            // If there was a prompt in the previous step, store its value
+            if (currentPromptStep > 0 && promptSteps[currentPromptStep - 1] && promptSteps[currentPromptStep - 1].type === 'prompt') {
+                const prevStep = promptSteps[currentPromptStep - 1];
+                let value = modalInput.value.trim(); // Trim whitespace from input
+                if (prevStep.parse) {
+                    value = prevStep.parse(value);
+                    // Input validation for age
+                    if (isNaN(value) && prevStep.varName === 'age') {
+                        showModal("Veuillez saisir un âge valide (un nombre).", true, prevStep.label, modalInput.value);
+                        return; // Stay on the same step until valid input
+                    }
+                }
+                // Assign value to the global variable using window object
+                window[prevStep.varName] = value;
+            }
+
+            const step = promptSteps[currentPromptStep];
+
+            // If no more steps, hide modal and return
+            if (!step) {
+                hideModal();
+                return;
+            }
+
+            if (step.type === 'alert') {
+                showModal(step.message);
+                currentPromptStep++;
+            } else if (step.type === 'prompt') {
+                showModal(step.message, true, step.label);
+                currentPromptStep++;
+            } else if (step.type === 'result') {
+                // Calculate and display result
+                let resultat = `${nom} ${prenom} (${annee_naissance}), âge : ${age}`;
+                let ageMessage = '';
+                if (age >= 18) {
+                    ageMessage = "Je suis majeur. Bienvenue sur ma page.";
+                } else {
+                    ageMessage = "Je suis mineur. Vous n'êtes pas la bienvenue sur ma page.";
+                }
+                showModal(`${resultat}\n\n${ageMessage}`);
+                currentPromptStep++;
+            } else if (step.type === 'final') {
+                hideModal();
+                // Display the final result on the main page
+                if (finalResultDisplay) {
+                    finalResultDisplay.textContent = `Informations saisies: ${nom} ${prenom} (${annee_naissance}), âge: ${age}. Statut: ${age >= 18 ? 'Majeur' : 'Mineur'}`;
+                }
+                currentPromptStep = 0; // Reset for next time if needed
+            }
+        }
+
+        // Initialize modal elements and start the sequence when the window loads
+        window.onload = function() {
+            // Get modal elements by their IDs
+            customModalOverlay = document.getElementById('customModalOverlay');
+            customModal = document.getElementById('customModal');
+            modalMessage = document.getElementById('modalMessage');
+            inputArea = document.getElementById('inputArea');
+            modalInputLabel = document.getElementById('modalInputLabel');
+            modalInput = document.getElementById('modalInput');
+            modalOkButton = document.getElementById('modalOkButton');
+            finalResultDisplay = document.getElementById('finalResultDisplay');
+
+            // Start the interactive sequence
+            handleNextStep();
+
+            // Add event listener to the OK button to proceed to the next step
+            modalOkButton.addEventListener('click', handleNextStep);
+
+            // Allow pressing Enter key in the input field to trigger the OK button click
+            modalInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    handleNextStep();
+                }
+            });
+        };
+    </script>
 </body>
 </html>
