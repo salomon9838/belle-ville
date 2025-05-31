@@ -35,8 +35,13 @@
             background-color: #111;
             padding: 10px 20px;
             width: 100%; /* Ensure navbar spans full width */
-            justify-content: center; /* Center nav items */
+            justify-content: space-between; /* Distribute items with space between */
             box-sizing: border-box; /* Include padding in width */
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
         }
 
         .logo {
@@ -85,13 +90,47 @@
             background-color: #333;
         }
 
+        /* Search bar styles */
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 8px 12px;
+            border: 1px solid #ccc; /* Lighter border for white background */
+            border-radius: 5px;
+            background-color: white; /* Changed to white */
+            color: black; /* Changed to black for readability on white background */
+            margin-right: 10px;
+            font-size: 1em;
+        }
+
+        /* Placeholder text color for search input */
+        .search-bar input::placeholder {
+            color: #666; /* Darker placeholder for readability */
+        }
+
+        .search-bar button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
         /* Gallery styles */
         .gallery {
             display: grid;
-            /* Adjusted to allow images to take more width */
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
-            /* Removed max-width to allow full page width */
             width: 100%; /* Make gallery responsive */
             padding: 20px;
             box-sizing: border-box;
@@ -231,36 +270,50 @@
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 padding: 10px;
             }
+            .search-bar {
+                width: 100%;
+                margin-top: 10px;
+                justify-content: center;
+            }
+            .search-bar input {
+                width: 70%;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="navbar">
-        <div class="logo">pays<span>ville</span></div>
-        <div class="nav-item">ACCUEIL</div>
-        <div class="nav-item">VIDÉOS
-            <div class="dropdown">
-                <a href="#">Populaires</a>
-                <a href="#">Récentes</a>
-                <a href="#">Tendances</a>
+        <div class="navbar-left">
+            <div class="logo">Pays<span>Mode</span></div>
+            <div class="nav-item">ACCUEIL</div>
+            <div class="nav-item">VIDÉOS
+                <div class="dropdown">
+                    <a href="#">Populaires</a>
+                    <a href="#">Récentes</a>
+                    <a href="#">Tendances</a>
+                </div>
             </div>
-        </div>
-        <div class="nav-item">CATÉGORIES
-            <div class="dropdown">
-                <a href="#">Amateur</a>
-                <a href="#">Professionnel</a>
-                <a href="#">Milf</a>
+            <div class="nav-item">CATÉGORIES
+                <div class="dropdown">
+                    <a href="#">Amateur</a>
+                    <a href="#">Professionnel</a>
+                    <a href="#">Milf</a>
+                </div>
             </div>
+            <div class="nav-item">LIVE VILLE</div>
+            <div class="nav-item">PROFESSION</div>
+            <div class="nav-item">COMMUNAUTÉ</div>
+            <div class="nav-item">PHOTOS & GIF</div>
         </div>
-        <div class="nav-item">LIVE VILLE</div>
-        <div class="nav-item">PROFESSION</div>
-        <div class="nav-item">COMMUNAUTÉ</div>
-        <div class="nav-item">PHOTOS & GIF</div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Rechercher des images...">
+            <button id="searchButton">Rechercher</button>
+        </div>
     </div>
 
-    <h1 style="color: red;">Bienvenue sur ma page2</h1>
-    <a href="#ville">vers le bas</a><br />
+    <h1 style="color: red;">Bienvenue Chez SalomonStyle</h1>
+    <button><a href="#ville">vers le bas</a><br /></button>
 
     <div class="gallery">
         <div class="gallery-item">
@@ -423,6 +476,134 @@
             <img src="IMG-20250526-WA0076.jpg" alt="T-shirt with graphic print">
             <div class="caption">T-shirt with graphic print</div>
         </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0037.jpg" alt="Blue and white sneakers">
+            <div class="caption">Chaussures de sport bleues et blanches</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0042.jpg" alt="Pantofel safety shoes">
+            <div class="caption">Chaussures de sécurité Pantofel</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0040.jpg" alt="Khaki Air Force Flat Shoes">
+            <div class="caption">Chaussures plates kaki Air Force</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0041.jpg" alt="Zouhaolu Shoes">
+            <div class="caption">Chaussures Zouhaolu</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0043.jpg" alt="Men's Crocodile Pattern Leather Shoes">
+            <div class="caption">Chaussures en cuir motif crocodile pour hommes</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0044.jpg" alt="Canvas Casual Mens Shoes">
+            <div class="caption">Chaussures décontractées en toile pour hommes</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0045.jpg" alt="Atlantic Stars Men's Sneakers">
+            <div class="caption">Baskets Atlantic Stars pour hommes</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0046.jpg" alt="Chloe bag">
+            <div class="caption">Sac Chloé</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250528-WA0005.jpg" alt="Brown streetwear outfit">
+            <div class="caption">Tenue streetwear marron</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250528-WA0004.jpg" alt="Off white jeans short outfit">
+            <div class="caption">Tenue short en jean blanc cassé</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0003.jpg" alt="Rick Owens denim pusher jeans">
+            <div class="caption">Jean Rick Owens denim pusher</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0004.jpg" alt="Polo Ralph Lauren carpenter jeans">
+            <div class="caption">Jean cargo Polo Ralph Lauren</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0005.jpg" alt="Vintage Levis sport jeans">
+            <div class="caption">Jean sport Levis vintage</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0006.jpg" alt="Y2K Baggy Jeans">
+            <div class="caption">Jean baggy Y2K</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0007.jpg" alt="Akademiks baggy jeans">
+            <div class="caption">Jean baggy Akademiks</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0008.jpg" alt="Jeans multipoches">
+            <div class="caption">Jean multipoches</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0009.jpg" alt="Rivet de cru jeans">
+            <div class="caption">Jean rivet de cru</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0010.jpg" alt="Neighborhood Savage Utility Cpt Nevada Wash Jeans">
+            <div class="caption">Jean Neighborhood Savage Utility Cpt Nevada Wash</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0011.jpg" alt="Worn out work pants">
+            <div class="caption">Pantalon de travail usé</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0012.jpg" alt="Benjamin Franklin jeans">
+            <div class="caption">Jean Benjamin Franklin</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250531-WA0013.jpg" alt="Blue cult denim jeans">
+            <div class="caption">Jean denim bleu culte</div>
+        </div>
+        <div class="gallery-item">
+            <img src="IMG-20250526-WA0102.jpg" alt="Heartbeat Print Crop Top">
+            <div class="caption">Haut court imprimé battement de cœur</div>
+        </div>
+        <div class="gallery-item">
+            <img src="ensemble-de-vetements.jpg" alt="Ensemble de vêtements">
+            <div class="caption">Ensemble de vêtements</div>
+        </div>
+        <div class="gallery-item">
+            <img src="jeans.jpg" alt="Jeans">
+            <div class="caption">Jeans</div>
+        </div>
+        <div class="gallery-item">
+            <img src="pantalon-sur-cintre-avec-fond-vert.jpg" alt="Pantalon sur cintre avec fond vert">
+            <div class="caption">Pantalon sur cintre avec fond vert</div>
+        </div>
+        <div class="gallery-item">
+            <img src="pile-de-vetements-sur-fond-blanc-libre.jpg" alt="Pile de vêtements sur fond blanc">
+            <div class="caption">Pile de vêtements sur fond blanc</div>
+        </div>
+        <div class="gallery-item">
+            <img src="vue-de-dessus-des-vetements (1).jpg" alt="Vue de dessus des vêtements (1)">
+            <div class="caption">Vue de dessus des vêtements (1)</div>
+        </div>
+        <div class="gallery-item">
+            <img src="rendu-de-la-nature-morte-de-l-affichage-des-vestes.jpg" alt="Rendu de la nature morte de l'affichage des vestes">
+            <div class="caption">Rendu de la nature morte de l'affichage des vestes</div>
+        </div>
+        <div class="gallery-item">
+            <img src="homme-d-affaires-portant-un-pantalon-noir-avec-une-chemise-blanche.jpg" alt="Homme d'affaires portant un pantalon noir avec une chemise blanche">
+            <div class="caption">Homme d'affaires portant un pantalon noir avec une chemise blanche</div>
+        </div>
+        <div class="gallery-item">
+            <img src="vue-de-dessus-des-vetements.jpg" alt="Vue de dessus des vêtements">
+            <div class="caption">Vue de dessus des vêtements</div>
+        </div>
+        <div class="gallery-item">
+            <img src="un-pantalon.jpg" alt="Un pantalon noir">
+            <div class="caption">Un pantalon noir</div>
+        </div>
+        <div class="gallery-item">
+            <img src="ensemble-de-vetements (1).jpg" alt="Ensemble de vêtements (1)">
+            <div class="caption">Ensemble de vêtements (1)</div>
+        </div>
     </div>
     <p id="ville">vers le bas</p>
     <p id="finalResultDisplay" style="margin-top: 20px; font-size: 1.2em; text-align: center;"></p>
@@ -532,10 +713,11 @@
                 // Calculate and display result
                 let resultat = `${nom} ${prenom} (${annee_naissance}), âge : ${age}`;
                 let ageMessage = '';
-                if (age >= 18) {
+                // Adjusted logic: majeur if age > 18, mineur if age <= 18
+                if (age > 18) {
                     ageMessage = "Je suis majeur. Bienvenue sur ma page.";
                 } else {
-                    ageMessage = "Je suis mineur. Vous n'êtes pas la bienvenue sur ma page.";
+                    ageMessage = "Je suis mineur. Vous êtes la bienvenue sur ma page.";
                 }
                 showModal(`${resultat}\n\n${ageMessage}`);
                 currentPromptStep++;
@@ -543,10 +725,27 @@
                 hideModal();
                 // Display the final result on the main page
                 if (finalResultDisplay) {
-                    finalResultDisplay.textContent = `Informations saisies: ${nom} ${prenom} (${annee_naissance}), âge: ${age}. Statut: ${age >= 18 ? 'Majeur' : 'Mineur'}`;
+                    finalResultDisplay.textContent = `Informations saisies: ${nom} ${prenom} (${annee_naissance}), âge: ${age}. Statut: ${age > 18 ? 'Majeur' : 'Mineur'}`;
                 }
                 currentPromptStep = 0; // Reset for next time if needed
             }
+        }
+
+        // Function to filter gallery items based on search input
+        function filterGalleryItems() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            galleryItems.forEach(item => {
+                const caption = item.querySelector('.caption').textContent.toLowerCase();
+                const altText = item.querySelector('img').alt.toLowerCase();
+
+                if (caption.includes(searchTerm) || altText.includes(searchTerm)) {
+                    item.style.display = 'block'; // Show the item
+                } else {
+                    item.style.display = 'none'; // Hide the item
+                }
+            });
         }
 
         // Initialize modal elements and start the sequence when the window loads
@@ -571,6 +770,14 @@
             modalInput.addEventListener('keypress', function(event) {
                 if (event.key === 'Enter') {
                     handleNextStep();
+                }
+            });
+
+            // Add event listeners for the search bar
+            document.getElementById('searchButton').addEventListener('click', filterGalleryItems);
+            document.getElementById('searchInput').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    filterGalleryItems();
                 }
             });
         };
