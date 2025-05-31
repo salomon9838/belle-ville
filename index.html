@@ -1,79 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>VISITE DE LA VILLE</title>
-
-</head>
-<body>
-	<style>
-	body{
-		 background-image: url("image21.jpg");
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Modes style</title>
+    <style>
+        body {
+            background-image: url("image21.jpg");
             background-size: cover;
-            font-family: Times News Roman;
-            
-	}
-	p{
-		  font-family: Times News Roman;
-		  
-	}
-	a[title]{
-		color: red;
+            font-family: 'Times New Roman', serif; /* Corrected font name */
+            text-align: center; /* Centered body content */
+        }
+        p {
+            font-family: 'Times New Roman', serif;
+        }
+        a[title] {
+            color: red;
+        }
+        h1 {
+            font-family: 'Arial Black', sans-serif;
+            text-align: center;
+            color: blue;
+            /* text-decoration: blink; is deprecated and not supported by modern browsers */
+        }
+        .si {
+            background-color: yellow;
+            padding: 10px 20px; /* Added padding for better button appearance */
+            border-radius: 5px; /* Added slight border-radius */
+            display: inline-block; /* Essential for transform to work correctly */
+            text-decoration: none; /* Remove underline from the link */
+            color: black; /* Ensure text is visible on yellow background */
+            font-weight: bold; /* Make text bold for emphasis */
+            /* Animation for the button */
+            animation: growAndPulse 2s infinite ease-in-out; /* Apply the animation */
+        }
 
-	}
-	h1{
-		font-family: Arial Black;
-		text-align: center;
-		color: blue;
-		text-decoration: blink;
-	}
-	.si{
-		background-color: yellow;
-		
-	}
-	h2{
-		
-		text-align: center;
-	}
-	body{
-		text-align: center;
+        /* Keyframes for the "grow and pulse" animation */
+        @keyframes growAndPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.7); /* Initial shadow for pulse effect */
+            }
+            50% {
+                transform: scale(1.1); /* Grow bigger */
+                box-shadow: 0 0 0 15px rgba(255, 255, 0, 0); /* Expand shadow */
+            }
+            100% {
+                transform: scale(1); /* Return to original size */
+                box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.7); /* Reset shadow */
+            }
+        }
 
-	
-
-	}
-	.se{
-		text-align: right;
-
-	}
-
-
-	.flat{
-		float: right;
-			}
-	.fla{
-		float: left;
-	}
-
-	  </style>
+        h2 {
+            text-align: center;
+            color: red; /* Kept the red color for h2 as in user's last input */
+        }
+        .se {
+            text-align: right;
+        }
+        /* Styles pour le conteneur d'images pour qu'elles occupent toute la largeur */
+        .image-container {
+            display: flex; /* Use flexbox for horizontal alignment */
+            justify-content: center; /* Center images horizontally */
+            align-items: center; /* Align images vertically in the center */
+            flex-wrap: wrap; /* Allow images to wrap to the next line on smaller screens */
+            gap: 15px; /* Space between images */
+            margin: 20px auto; /* Center the container and add vertical margin */
+            max-width: 90%; /* Limit width to prevent overflow on very wide screens */
+        }
+        .image-container img {
+            width: 200px; /* Set a fixed width for consistent size */
+            height: 200px; /* Set a fixed height to maintain aspect ratio with object-fit */
+            object-fit: cover; /* Ensure images cover the area without distortion */
+            border-radius: 10px; /* Add some rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+            transition: transform 0.3s ease; /* Smooth transition for hover effect */
+        }
+        .image-container img:hover {
+            transform: scale(1.05); /* Slightly enlarge image on hover */
+        }
+        /* Clearfix might still be useful for other floating elements, but not strictly needed for flexbox */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
 </head>
 <body>
-	<h1>LA DECOUVERTE DE MON SITE</h1>
-	<h2>BIENVENUE SUR LA VISITE DES VILLES</h2>
-	<p>Grace à la decouverte de ce site vous enverrez des villes les plus belles et explandides<br /> du monde entier sous-ceux je vous invite à voir ma page suivante.</p>
-	<h3>Voici un exemple de la France à paris</h3>
-	
-	<p><a href="TP3-1.pdf">Telecharger le fichier de la ville</a></p>
-	
-	<img src="image4.jpg" class="flat="flottante">
-	<img src="image4.jpg" class="flat="flottante">
-	<img src="image4.jpg" class="flat="flottante">
-</p>
-	<p class="se"><button><a href="mailto: salomonkoumedjina@gmail.com" title="e-mail">Contactez-moi</a></button></p>
-	<h3>cliquez le lien en desssous pour ma page suivante</h3>
-	<p><button class="si"><a href="index3.html">Ma page 2</a></button></p>
-	<flooter style="color: red;">
-		contact         @salomonFiagan                   formateur
-	
+    <h1>LA DECOUVERTE DE MON SITE</h1>
+    <h2>Bienvenue Chez SalomonStyle</h2>
+    <p>Grace à la decouverte de ce site vous verrez des beaux vetements et explandides<br /> du monde entier sous-ceux je vous invite à voir ma page suivante.</p>
+    <h3>Voici des exemples sur les modes du style </h3>
+    
+    <p><a href="TP3-1.pdf">Telecharger le fichier de la ville</a></p>
+    
+    <div class="image-container">
+        <img src="IMG-20250526-WA0011.jpg" alt="Kaftan Batik Cotton Kelantan">
+        <img src="IMG-20250526-WA0084.jpg" alt="Image de mode">
+        <img src="IMG-20250531-WA0005.jpg" alt="Vintage Levis sport jeans">
+        <img src="IMG-20250526-WA0042.jpg" alt="Pantofel safety shoes">
+        <img src="IMG-20250526-WA0088.jpg" alt="Haut court imprimé lèvres et billets">
+        
+    </div>
+
+    <p class="se"><button><a href="mailto:salomonkoumedjina@gmail.com" title="e-mail">Contactez-moi</a></button></p>
+    <h3>cliquez le lien en desssous pour ma page suivante</h3>
+    <p><button class="si"><a href="index3.html">Ma page 2</a></button></p>
+    <footer style="color: red;">
+        contact @salomonFiagan formateur
+    </footer>
 </body>
 </html>
