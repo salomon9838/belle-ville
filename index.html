@@ -1,114 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modes style</title>
-    <style>
-        body {
-            background-image: url("image21.jpg");
-            background-size: cover;
-            font-family: 'Times New Roman', serif; /* Corrected font name */
-            text-align: center; /* Centered body content */
-        }
-        p {
-            font-family: 'Times New Roman', serif;
-        }
-        a[title] {
-            color: red;
-        }
-        h1 {
-            font-family: 'Arial Black', sans-serif;
-            text-align: center;
-            color: blue;
-            /* text-decoration: blink; is deprecated and not supported by modern browsers */
-        }
-        .si {
-            background-color: yellow;
-            padding: 10px 20px; /* Added padding for better button appearance */
-            border-radius: 5px; /* Added slight border-radius */
-            display: inline-block; /* Essential for transform to work correctly */
-            text-decoration: none; /* Remove underline from the link */
-            color: black; /* Ensure text is visible on yellow background */
-            font-weight: bold; /* Make text bold for emphasis */
-            /* Animation for the button */
-            animation: growAndPulse 2s infinite ease-in-out; /* Apply the animation */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modes & Style - Salomon</title>
+  <style>
+    :root {
+      --primary: #f8e8ea;
+      --accent: #a076b1;
+      --text: #333;
+      --header-bg: #eac7c7;
+      --footer-bg: #f1f1f1;
+      --radius: 10px;
+    }
 
-        /* Keyframes for the "grow and pulse" animation */
-        @keyframes growAndPulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.7); /* Initial shadow for pulse effect */
-            }
-            50% {
-                transform: scale(1.1); /* Grow bigger */
-                box-shadow: 0 0 0 15px rgba(255, 255, 0, 0); /* Expand shadow */
-            }
-            100% {
-                transform: scale(1); /* Return to original size */
-                box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.7); /* Reset shadow */
-            }
-        }
+    body {
+      background-color: var(--primary);
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
 
-        h2 {
-            text-align: center;
-            color: red; /* Kept the red color for h2 as in user's last input */
-        }
-        .se {
-            text-align: right;
-        }
-        /* Styles pour le conteneur d'images pour qu'elles occupent toute la largeur */
-        .image-container {
-            display: flex; /* Use flexbox for horizontal alignment */
-            justify-content: center; /* Center images horizontally */
-            align-items: center; /* Align images vertically in the center */
-            flex-wrap: wrap; /* Allow images to wrap to the next line on smaller screens */
-            gap: 15px; /* Space between images */
-            margin: 20px auto; /* Center the container and add vertical margin */
-            max-width: 90%; /* Limit width to prevent overflow on very wide screens */
-        }
-        .image-container img {
-            width: 200px; /* Set a fixed width for consistent size */
-            height: 200px; /* Set a fixed height to maintain aspect ratio with object-fit */
-            object-fit: cover; /* Ensure images cover the area without distortion */
-            border-radius: 10px; /* Add some rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-            transition: transform 0.3s ease; /* Smooth transition for hover effect */
-        }
-        .image-container img:hover {
-            transform: scale(1.05); /* Slightly enlarge image on hover */
-        }
-        /* Clearfix might still be useful for other floating elements, but not strictly needed for flexbox */
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-    </style>
+    header {
+      background-color: var(--header-bg);
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: var(--accent);
+    }
+
+    header h2 {
+      margin-top: 1rem;
+      font-style: italic;
+      color: #555;
+    }
+
+    main {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    h3 {
+      margin-top: 2rem;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 1rem auto;
+      max-width: 600px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .button {
+      display: inline-block;
+      margin: 1rem auto;
+      background-color: var(--accent);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+      background-color: #805b99;
+    }
+
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 2rem;
+    }
+
+    .image-container img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .image-container img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: var(--footer-bg);
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      font-style: italic;
+      color: var(--accent);
+    }
+  </style>
 </head>
 <body>
-    <h1>LA DECOUVERTE DE MON SITE</h1>
-    <h2>Bienvenue Chez SalomonStyle</h2>
-    <p>Grace à la decouverte de ce site vous verrez des beaux vetements et explandides<br /> du monde entier sous-ceux je vous invite à voir ma page suivante.</p>
-    <h3>Voici des exemples sur les modes du style </h3>
-    
-    <p><a href="TP3-1.pdf">Telecharger le fichier de la ville</a></p>
-    
+  <header>
+    <h1>LA DÉCOUVERTE DE MON SITE</h1>
+    <h2>Bienvenue chez SalomonStyle</h2>
+  </header>
+
+  <main>
+    <p>
+      Grâce à la découverte de ce site, vous verrez des vêtements magnifiques et splendides du monde entier.<br>
+      Je vous invite à explorer la page suivante pour plonger dans l’univers du style.
+    </p>
+
+    <h3>Exemples de tenues inspirantes</h3>
+
     <div class="image-container">
-        <img src="IMG-20250526-WA0011.jpg" alt="Kaftan Batik Cotton Kelantan">
-        <img src="IMG-20250526-WA0084.jpg" alt="Image de mode">
-        <img src="IMG-20250531-WA0005.jpg" alt="Vintage Levis sport jeans">
-        <img src="IMG-20250526-WA0042.jpg" alt="Pantofel safety shoes">
-        <img src="IMG-20250526-WA0088.jpg" alt="Haut court imprimé lèvres et billets">
-        
+      <img src="IMG-20250526-WA0011.jpg" alt="Kaftan Batik Cotton Kelantan">
+      <img src="IMG-20250526-WA0084.jpg" alt="Style international">
+      <img src="IMG-20250531-WA0005.jpg" alt="Vintage Levi's sport jeans">
+      <img src="IMG-20250526-WA0042.jpg" alt="Pantofel safety shoes">
+      <img src="IMG-20250526-WA0088.jpg" alt="Haut court imprimé lèvres et billets">
     </div>
 
-    <p class="se"><button><a href="mailto:salomonkoumedjina@gmail.com" title="e-mail">Contactez-moi</a></button></p>
-    <h3>cliquez le lien en desssous pour ma page suivante</h3>
-    <p><button class="si"><a href="index3.html">Ma page 2</a></button></p>
-    <footer style="color: red;">
-        contact @salomonFiagan formateur
-    </footer>
+    <p><a class="button" href="TP3-1.pdf" title="PDF">📄 Télécharger le fichier de la ville</a></p>
+
+    <p><a class="button" href="mailto:salomonkoumedjina@gmail.com" title="e-mail">📧 Contactez-moi</a></p>
+
+    <h3>Accédez à la prochaine page</h3>
+    <p><a class="button" href="index3.html">➡️ Ma page 2</a></p>
+  </main>
+
+  <footer>
+    Contact : @salomonFiagan – Formateur<br>
+    “Chaque fête est une œuvre d’art, chaque sourire une lumière.”
+  </footer>
 </body>
 </html>
