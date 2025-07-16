@@ -3,108 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon Site</title>
-</head>
-<body>
-    <style>
-        body{
-        background-color: gray;
-        color: black;
-        text-align: center;
-        font-size: large;
-        font-family: Arial, Helvetica, sans-serif;
+  <title>Inscription | Mon Site</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 20px 0;
     }
 
     form {
-      width: 100%;
-      max-width: 600px; /* Pour limiter la largeur du formulaire */
-      margin: 0 auto; /* Pour centrer le formulaire */
-      padding: 20px;
       background-color: white;
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
       border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     form div {
       margin-bottom: 15px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
     }
 
     button {
-      width: 100%; /* Pour que le bouton remplisse la largeur de son conteneur */
-      padding: 15px;
-      background-color: blue;
+      width: 100%;
+      background-color: #4a90e2;
       color: white;
-      font-size: 18px;
       border: none;
+      padding: 15px;
+      font-size: 16px;
       border-radius: 5px;
       cursor: pointer;
-      text-align: center;
+      transition: background-color 0.3s ease;
     }
-    .si{
-		background-color: yellow;
-		
-	}
 
-    </style>
+    button:hover {
+      background-color: #357abd;
+    }
+
+    .si {
+      margin-top: 20px;
+      display: inline-block;
+      background-color: yellow;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #eee;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
   <header>
-    <h1 style="color: blue;">Bienvenue sur mon site !</h1>
+    <h1>Bienvenue sur mon site !</h1>
   </header>
 
   <main>
-    <h2>Inscription</h2>
-    <form action="https://formspree.io/f/{TON_FORM_ID}" method="POST">
-        <p>
+    <h2>Inscris-toi ici 👇</h2>
+    <form action="https://formspree.io/f/TON_FORM_ID" method="POST">
       <div>
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required>
       </div>
-        </p>
 
-        <p>
       <div>
-        <label for="Prenom">Prenom :</label>
-        <input type="text" id="Prenom" name="Prenom" required>
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required>
       </div>
-        </p>
-        <p>
+
       <div>
-        <label for="Date de naissance">Date de naissance :</label>
-        <input type="naissance" id="Date de naissance" name="Date de naissance" required>
+        <label for="naissance">Date de naissance :</label>
+        <input type="date" id="naissance" name="naissance" required>
       </div>
-      </p>
-      <p>
+
       <div>
-        <label for="email">Adresse :</label>
-        <input type="Adresse" id="Adresse" name="Adresse" required>
+        <label for="adresse">Adresse :</label>
+        <input type="text" id="adresse" name="adresse" required>
       </div>
-      </p>
-        <p>
+
       <div>
         <label for="email">Email :</label>
         <input type="email" id="email" name="email" required>
       </div>
-      </p>
-        <p>
+
       <div>
-        <label for="Profession">Profession :</label>
-        <input type="input type="email"" id="Profession" name="Profession" required>
+        <label for="profession">Profession :</label>
+        <input type="text" id="profession" name="profession" required>
       </div>
-       </p>
-       <p>
-        <div>
-          <label for="Expérience">Expérience :</label>
-          <input type="input type="Expérience"" id="Expérience" name="Expérience" required>
-        </div>
-         </p>
-         <textarea name="message" placeholder="Ton message"></textarea>
-         <button type="submit">S'inscrire</button>
-     
+
+      <div>
+        <label for="experience">Expérience :</label>
+        <input type="text" id="experience" name="experience" required>
+      </div>
+
+      <div>
+        <label for="message">Ton message :</label>
+        <textarea id="message" name="message" placeholder="Écris-nous un mot sympa ici 😊"></textarea>
+      </div>
+
+      <button type="submit">S'inscrire</button>
     </form>
+
+    <p><a class="si" href="index2.html">Ma page 2</a></p>
   </main>
-  <p><button class="si"><a href="index2.html">Ma page 2</a></button></p>
- 
+
   <footer>
-    <p>&copy; 2025 Mon Site Web</p>
+    <p>&copy; 2025 Mon Site Web | SalomonStyle</p>
   </footer>
-  </style>
+
 </body>
 </html>
