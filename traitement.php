@@ -1,35 +1,39 @@
 <?php
+// Connexion à la base de données
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "mon_inscription";
+$dbname = "mon_inscription";
 
-// Connexion
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = new mysqli($host, $user, $pass, $dbname);
 
+// Vérification de la connexion
 if ($conn->connect_error) {
-  die("Erreur de connexion : " . $conn->connect_error);
+    die("Erreur de connexion : " . $conn->connect_error);
 }
 
-// Récupération des champs
-$nom = $_POST['nom'];
-$prenom = $_POST['prenom'];
-$naissance = $_POST['naissance'];
-$adresse = $_POST['adresse'];
-$email = $_POST['email'];
+// Récupération des données du formulaire
+$nom        = $_POST['nom'];
+$prenom     = $_POST['prenom'];
+$naissance  = $_POST['naissance'];
+$adresse    = $_POST['adresse'];
+$email      = $_POST['email'];
 $profession = $_POST['profession'];
 $experience = $_POST['experience'];
-$message = $_POST['message'];
+$message    = $_POST['message'];
 
-// Requête SQL
+// Requête d'insertion
 $sql = "INSERT INTO utilisateurs (nom, prenom, naissance, adresse, email, profession, experience, message)
-VALUES ('$nom', '$prenom', '$naissance', '$adresse', '$email', '$profession', '$experience', '$message')";
+        VALUES ('$nom', '$prenom', '$naissance', '$adresse', '$email', '$profession', '$experience', '$message')";
 
+// Si tout se passe bien, on redirige vers la page suivante
 if ($conn->query($sql) === TRUE) {
-  echo "✅ Inscription enregistrée avec succès.";
+    header("Location: index2.html");
+    exit;
 } else {
-  echo "❌ Erreur : " . $conn->error;
+    echo "❌ Une erreur est survenue : " . $conn->error;
 }
 
+// Fermeture de la connexion
 $conn->close();
 ?>
